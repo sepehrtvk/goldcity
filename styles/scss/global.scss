@@ -1,12 +1,25 @@
 $theme-colors: (
-  'primary': #145bea,
+  'primary': #006063,
   'secondary': #833bec,
   'success': #1ce1ac,
   'info': #ff7d50,
   'warning': #ffbe0b,
   'danger': #ff007f,
   'light': #c0ccda,
-  'dark': #001738,
+  'dark': #004446,
+  'gold': #e8a765,
+  'body-color': #c0ccda,
+);
+
+$grid-gutter-width: 1.5rem;
+$spacer: 1rem;
+$gutters: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
 );
 
 @import '/node_modules/bootstrap/scss/bootstrap.scss';
@@ -32,4 +45,5 @@ $theme-colors: (
 
 body {
   font-family: 'Shabnam', sans-serif;
+  color: #006063;
 }
