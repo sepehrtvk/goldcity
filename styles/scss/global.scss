@@ -1,0 +1,35 @@
+$theme-colors: (
+  'primary': #145bea,
+  'secondary': #833bec,
+  'success': #1ce1ac,
+  'info': #ff7d50,
+  'warning': #ffbe0b,
+  'danger': #ff007f,
+  'light': #c0ccda,
+  'dark': #001738,
+);
+
+@import '/node_modules/bootstrap/scss/bootstrap.scss';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+@font-face {
+  font-family: 'Shabnam';
+  src: url('../../public/assets/fonts/Shabnam-FD.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'ShabnamBold';
+  src: url('../../public/assets/fonts/Shabnam-Bold-FD.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'ShabnamLight';
+  src: url('../../public/assets/fonts/Shabnam-Light-FD.ttf') format('truetype');
+}
+
+body {
+  font-family: 'Shabnam', sans-serif;
+}
