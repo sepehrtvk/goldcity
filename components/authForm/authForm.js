@@ -65,7 +65,9 @@ const AuthForm = ({ setMessage }) => {
 
                   if (res.status == '1') {
                     setMessage('شما با موفقیت وارد شدید.');
-                    router.replace('/home');
+                    setTimeout(() => {
+                      router.replace('/home');
+                    }, 500);
                   }
                 },
                 error: (err) => {
@@ -174,7 +176,10 @@ const AuthForm = ({ setMessage }) => {
               />
             </div>
 
-            <button type='submit' className='btn btn-primary w-100'>
+            <button
+              type='submit'
+              className='btn btn-primary w-100'
+              disabled={isLoading}>
               <span>ورود</span>
               {isLoading && <Spinner />}
             </button>
