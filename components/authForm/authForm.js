@@ -5,6 +5,8 @@ import { getOTPcode, getUserMe, loginByOTPcode } from '../../api/user';
 import { finalize } from 'rxjs';
 import Spinner from '../ui/spinner';
 import { useRouter } from 'next/router';
+import { signIn } from '../../redux/slices/user/userSlice';
+import { useAppDispatch } from '../../redux/hooks';
 
 const AuthForm = ({ setMessage }) => {
   const [mobile, setMobile] = useState('');
@@ -12,6 +14,7 @@ const AuthForm = ({ setMessage }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [step, setStep] = useState('mobile');
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const sendCode = (mobile) => {
     getOTPcode(mobile)
@@ -53,21 +56,20 @@ const AuthForm = ({ setMessage }) => {
               .pipe(finalize(() => setIsLoading(false)))
               .subscribe({
                 next: (res) => {
-                  //   dispatch(
-                  //     signIn({
-                  //       phone: phoneNumber,
-                  //       fullname: res.full_name,
-                  //       firstName: res.first_name,
-                  //       lastName: res.last_name,
-                  //       managerUid: res.mobile,
-                  //     })
-                  //   );
+                  dispatch(
+                    signIn({
+                      phone: mobile,
+                      fullname: res.full_name,
+                      firstName: res.first_name,
+                      lastName: res.last_name,
+                      managerUid: res.mobile,
+                    })
+                  );
 
                   if (res.status == '1') {
                     setMessage('شما با موفقیت وارد شدید.');
-                    setTimeout(() => {
-                      router.replace('/home');
-                    }, 500);
+
+                    router.replace('/home');
                   }
                 },
                 error: (err) => {
