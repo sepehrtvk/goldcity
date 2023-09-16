@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AuthForm from '../../components/authForm/authForm';
 import classes from './login.module.css';
+import { getOTPcode } from '../../api/user';
+import { finalize } from 'rxjs';
 
 const LoginPage = () => {
   return (

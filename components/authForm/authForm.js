@@ -1,18 +1,42 @@
 import React, { useState } from 'react';
 import { convertNumbersToEnglish } from '../../common/Localization';
 import ReactCodeInput from 'react-code-input';
+import { getOTPcode } from '../../api/user';
 
 const AuthForm = () => {
   const [mobile, setMobile] = useState('');
   const [code, setCode] = useState('');
   const [step, setStep] = useState('mobile');
 
+  const sendCode = (mobile) => {
+    getOTPcode(mobile)
+      // .pipe(finalize(() => setIsLoading(false)))
+      .subscribe({
+        next: (result) => {
+          console.log(result);
+
+          if (result.status == '1') {
+            //   setMessage('کد به شماره ' + formData.mobile + ' ارسال شد.');
+            setStep('code');
+          } else {
+            //   setMessage('شماره موبایل یافت نشد.');
+          }
+        },
+        error: (err) => {
+          // setMessage(err.message);
+          console.log(err);
+        },
+      });
+  };
+
   const submitForm = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
     if (step == 'mobile') {
-      if (mobile.length == 11) setStep('code');
+      if (mobile.length == 11) {
+        sendCode(mobile);
+      }
       return;
     } else {
       console.log(mobile);
