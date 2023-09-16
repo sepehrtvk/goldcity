@@ -1,30 +1,85 @@
 import React, { useState } from 'react';
 import { convertNumbersToEnglish } from '../../common/Localization';
 import ReactCodeInput from 'react-code-input';
-import { getOTPcode } from '../../api/user';
+import { getOTPcode, getUserMe, loginByOTPcode } from '../../api/user';
+import { finalize } from 'rxjs';
+import Spinner from '../ui/spinner';
+import { useRouter } from 'next/router';
 
-const AuthForm = () => {
+const AuthForm = ({ setMessage }) => {
   const [mobile, setMobile] = useState('');
   const [code, setCode] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [step, setStep] = useState('mobile');
+  const router = useRouter();
 
   const sendCode = (mobile) => {
     getOTPcode(mobile)
-      // .pipe(finalize(() => setIsLoading(false)))
+      .pipe(finalize(() => setIsLoading(false)))
       .subscribe({
         next: (result) => {
-          console.log(result);
-
           if (result.status == '1') {
-            //   setMessage('کد به شماره ' + formData.mobile + ' ارسال شد.');
+            setMessage({
+              message: 'کد به شماره ' + mobile + ' ارسال شد.',
+              success: true,
+            });
             setStep('code');
           } else {
-            //   setMessage('شماره موبایل یافت نشد.');
+            setMessage({
+              message: 'شماره موبایل یافت نشد.',
+              success: false,
+            });
           }
         },
         error: (err) => {
-          // setMessage(err.message);
-          console.log(err);
+          setMessage({
+            message: err.message,
+            success: false,
+          });
+        },
+      });
+  };
+
+  const loginBycode = (mobile, code) => {
+    loginByOTPcode({ mobile: mobile, otp: code })
+      .pipe(finalize(() => setIsLoading(false)))
+      .subscribe({
+        next: (result) => {
+          if (result.access_token) {
+            localStorage.setItem('access_token', result['access_token']);
+            setIsLoading(true);
+
+            getUserMe()
+              .pipe(finalize(() => setIsLoading(false)))
+              .subscribe({
+                next: (res) => {
+                  //   dispatch(
+                  //     signIn({
+                  //       phone: phoneNumber,
+                  //       fullname: res.full_name,
+                  //       firstName: res.first_name,
+                  //       lastName: res.last_name,
+                  //       managerUid: res.mobile,
+                  //     })
+                  //   );
+
+                  if (res.status == '1') {
+                    setMessage('شما با موفقیت وارد شدید.');
+                    router.replace('/home');
+                  }
+                },
+                error: (err) => {
+                  setMessage(err.message);
+                },
+              });
+          } else {
+            if (result.message) {
+              setMessage(result.message);
+            }
+          }
+        },
+        error: (err) => {
+          setMessage(err.message);
         },
       });
   };
@@ -35,12 +90,13 @@ const AuthForm = () => {
 
     if (step == 'mobile') {
       if (mobile.length == 11) {
+        setIsLoading(true);
         sendCode(mobile);
       }
       return;
     } else {
-      console.log(mobile);
-      console.log(code);
+      setIsLoading(true);
+      loginBycode(mobile, code);
     }
   };
 
@@ -70,8 +126,12 @@ const AuthForm = () => {
               />
             </div>
 
-            <button type='submit' className='btn btn-primary w-100'>
-              ارسال رمز یکبار مصرف
+            <button
+              type='submit'
+              disabled={isLoading}
+              className='btn btn-primary w-100'>
+              <span>ارسال رمز یکبار مصرف</span>
+              {isLoading && <Spinner />}
             </button>
           </div>
         </div>
@@ -115,7 +175,8 @@ const AuthForm = () => {
             </div>
 
             <button type='submit' className='btn btn-primary w-100'>
-              ورود
+              <span>ورود</span>
+              {isLoading && <Spinner />}
             </button>
           </div>
         </div>
