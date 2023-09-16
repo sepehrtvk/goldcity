@@ -13,8 +13,6 @@ const ProductDetailsPage = () => {
 
   const goldItem = getAllGoldItem(productId);
 
-  console.log(goldItem);
-
   if (!goldItem) return null;
 
   return (
@@ -28,7 +26,7 @@ const ProductDetailsPage = () => {
                 router.replace('/home');
               }}>
               <span className='mx-2'>بازگشت</span>
-              <i class='bi bi-arrow-left-square '></i>
+              <i className='bi bi-arrow-left-square '></i>
             </div>
           </div>
         </div>

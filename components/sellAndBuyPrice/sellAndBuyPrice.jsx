@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   convertNumbersToEnglish,
+  isFloat,
   toLocaleCurrencyString,
 } from '../../common/Localization';
 
@@ -31,7 +32,13 @@ const SellAndBuyPrice = ({ goldPrice, getValues }) => {
 
             if (value === '' || re.test(value)) {
               setPrice(value);
-              setAmount((+value / goldPrice).toFixed(8).toString());
+              const number = +value / goldPrice;
+
+              if (isFloat(number)) {
+                setAmount(number.toFixed(8).toString());
+              } else {
+                setAmount(number.toString());
+              }
             }
           }}
         />
