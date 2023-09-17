@@ -1,0 +1,69 @@
+{
+  "polyfillFiles": [
+    "static/chunks/polyfills-78c92fac7aa8fdd8.js"
+  ],
+  "devFiles": [],
+  "ampDevFiles": [],
+  "lowPriorityFiles": [
+    "static/tFQwYFYq8CgcdtnfoiHW5/_buildManifest.js",
+    "static/tFQwYFYq8CgcdtnfoiHW5/_ssgManifest.js"
+  ],
+  "rootMainFiles": [],
+  "pages": {
+    "/": [
+      "static/chunks/webpack-59c5c889f52620d6.js",
+      "static/chunks/framework-63157d71ad419e09.js",
+      "static/chunks/main-c6c319de9f7d0316.js",
+      "static/chunks/675-7852202a714adeb8.js",
+      "static/chunks/pages/index-70e0fcf5e25e9ad6.js"
+    ],
+    "/_app": [
+      "static/chunks/webpack-59c5c889f52620d6.js",
+      "static/chunks/framework-63157d71ad419e09.js",
+      "static/chunks/main-c6c319de9f7d0316.js",
+      "static/css/d4cb8eb94eb96715.css",
+      "static/chunks/pages/_app-0f8f1e7d0b1fdea0.js"
+    ],
+    "/_error": [
+      "static/chunks/webpack-59c5c889f52620d6.js",
+      "static/chunks/framework-63157d71ad419e09.js",
+      "static/chunks/main-c6c319de9f7d0316.js",
+      "static/chunks/pages/_error-54de1933a164a1ff.js"
+    ],
+    "/buyGoldFromUs": [
+      "static/chunks/webpack-59c5c889f52620d6.js",
+      "static/chunks/framework-63157d71ad419e09.js",
+      "static/chunks/main-c6c319de9f7d0316.js",
+      "static/chunks/pages/buyGoldFromUs-4e1f7e214bd7b08b.js"
+    ],
+    "/home": [
+      "static/chunks/webpack-59c5c889f52620d6.js",
+      "static/chunks/framework-63157d71ad419e09.js",
+      "static/chunks/main-c6c319de9f7d0316.js",
+      "static/chunks/675-7852202a714adeb8.js",
+      "static/chunks/pages/home-2bde6121fda497fe.js"
+    ],
+    "/login": [
+      "static/chunks/webpack-59c5c889f52620d6.js",
+      "static/chunks/framework-63157d71ad419e09.js",
+      "static/chunks/main-c6c319de9f7d0316.js",
+      "static/chunks/869-1cc52c7b922b01bc.js",
+      "static/css/e60c0535d92b2947.css",
+      "static/chunks/pages/login-2d9e864e85e35228.js"
+    ],
+    "/product/[productid]": [
+      "static/chunks/webpack-59c5c889f52620d6.js",
+      "static/chunks/framework-63157d71ad419e09.js",
+      "static/chunks/main-c6c319de9f7d0316.js",
+      "static/chunks/675-7852202a714adeb8.js",
+      "static/chunks/pages/product/[productid]-ef15f301efb2f647.js"
+    ],
+    "/sellGoldToUs": [
+      "static/chunks/webpack-59c5c889f52620d6.js",
+      "static/chunks/framework-63157d71ad419e09.js",
+      "static/chunks/main-c6c319de9f7d0316.js",
+      "static/chunks/pages/sellGoldToUs-a598ff27eb2e80c2.js"
+    ]
+  },
+  "ampFirstPages": []
+}

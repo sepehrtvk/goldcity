@@ -1,0 +1,13 @@
+{
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/api/hello": "pages/api/hello.js",
+  "/buyGoldFromUs": "pages/buyGoldFromUs.html",
+  "/home": "pages/home.html",
+  "/": "pages/index.html",
+  "/login": "pages/login.html",
+  "/product/[productid]": "pages/product/[productid].html",
+  "/sellGoldToUs": "pages/sellGoldToUs.html",
+  "/_error": "pages/_error.js",
+  "/404": "pages/404.html"
+}
